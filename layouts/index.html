@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ .Content }}
+
+<h3>Latest Updates</h3>
+<ul>
+  {{ $posts := where .Site.RegularPages "Type" "post" }}
+  {{ $micro := where .Site.RegularPages "Type" "micro" }}
+  {{ $links := where .Site.RegularPages "Type" "links" }}
+  {{ $allPages := union (union $posts $micro) $links }}
+  {{ range first 5 ($allPages.ByDate.Reverse) }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <small>({{ .Type }})</small>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

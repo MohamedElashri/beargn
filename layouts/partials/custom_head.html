@@ -1,0 +1,11 @@
+<!-- A partial to be overwritten by the user.
+  Simply place a custom_head.html into
+  your local /layouts/partials-directory -->
+  <style>
+    .tml-eqn::before {
+      counter-increment: tmlEqnNo;
+      content: "(" counter(tmlEqnNo) ")";
+    }
+    body { counter-reset: tmlEqnNo; }
+</style>
+    

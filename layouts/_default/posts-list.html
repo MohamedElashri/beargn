@@ -1,0 +1,21 @@
+{{ define "main" }}
+<content>
+  <h1>{{ .Title }}</h1>
+  <p class="section-description">Long-form articles and detailed guides exploring technical topics, with comprehensive explanations and practical insights.</p>
+  
+  <ul class="blog-posts">
+    {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <span>
+        <i>
+          <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+            {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+          </time>
+        </i>
+      </span>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</content>
+{{ end }}
