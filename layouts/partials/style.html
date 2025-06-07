@@ -1,5 +1,4 @@
 <style>
-/* new CSS theme */
 :root {
     --accent-color: #98f29f;
     --background-color: #d5ffd8;
@@ -21,8 +20,8 @@
     --text-color: #084106;
     --text-transform: lowercase;
     --transition-duration: 0.4s;
-    --visited-color: #084106;
-    --width: 800px;
+    --visited-color: #6a1b9a; /* Visited links more purple for contrast */
+    --width: 720px;
 
     /* Notice colors - Light mode */
     --notice-base-color: #5fc04c;
@@ -41,33 +40,30 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --accent-color: #335e36;
-        --background-color: #1b4624;
-        --blockquote-color: #ddd;
-        --code-background-color: #000;
-        --code-color: #ccc;
-        --heading-color: #72d17a;
-        --link-color: #bce8c2;
-        --text-color: #ddd;
-        --visited-color: #bce8c2;
-
-        /* Notice colors - Dark mode */
-        --notice-base-color: #37663c;
+        --accent-color: #393f4c;
+        --background-color: #181a1b;         /* softer, neutral dark gray */
+        --blockquote-color: #b2becd;
+        --code-background-color: #222326;    /* almost black, but with some warmth */
+        --code-color: #e0e0e0;
+        --heading-color: #62d066;            /* soft, light green for headings */
+        --link-color: #7fdbff;               /* light blue/cyan */
+        --text-color: #e0e0e0;               /* comfortable off-white */
+        --visited-color: #c189f8;            /* light purple */
+        --notice-base-color: #22282f;
         --notice-text-color: #e0e0e0;
-        --notice-title-color: #f0f0f0;
-
-        --notice-info-title: #132a43;
-        --notice-info-content: #0d1f32;
-
-        --notice-warning-title: #3d1d1d;
-        --notice-warning-content: #2d1515;
-
-        --notice-error-title: #3f1515;
-        --notice-error-content: #2f1010;
+        --notice-title-color: #fff;
+    
+        --notice-info-title: #7fdbff;
+        --notice-info-content: #232c3a;      /* dark blue background */
+    
+        --notice-warning-title: #ffae42;
+        --notice-warning-content: #38251a;   /* deep orange-brown background */
+    
+        --notice-error-title: #ff6565;
+        --notice-error-content: #341c1c;     /* deep muted red background */
     }
 }
 
-/* Global resets */
 *,
 *::before,
 *::after {
@@ -81,7 +77,6 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Basic styles */
 body {
     margin: 10px auto;
     padding: 5px;
@@ -97,34 +92,30 @@ body {
     overflow-wrap: break-word;
 }
 
-h1, /* Heading 1 */
-h2, /* Heading 2 */
-h3, /* Heading 3 */
-h4, /* Heading 4 */
-h5, /* Heading 5 */
-h6, /* Heading 6 */
-strong, /* Bold */
-b {
+h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
 }
 
-/* Specific styling for bold text */
 strong, b {
+    color: var(--text-color);
     font-weight: 600 !important;
-    
 }
 
 a {
     color: var(--link-color);
 }
 
-.title { /* Title of the blog */
-    text-decoration: none;  /* Remove underline */
-    border: 0;             /* Remove border */
+ul.blog-posts li a:visited {
+    color: var(--visited-color); /* Higher contrast visited link */
 }
 
-.title span { /* Title of the blog */
-    font-weight: 400; /* Make the title normal weight */
+.title {
+    text-decoration: none;
+    border: 0;
+}
+
+.title span {
+    font-weight: 400;
 }
 
 nav {
@@ -135,9 +126,7 @@ nav {
     overflow-x: auto;
     white-space: nowrap;
 }
-nav p {
-    display: inline;
-}
+nav p { display: inline; }
 nav a {
     margin: 5px 5px 5px 0;
     padding: 4px 10px 6px;
@@ -154,28 +143,46 @@ nav a:hover {
     background-color: var(--accent-color);
 }
 
-textarea { /* Textarea for the blog post */
-    width: 100%; /* Full width */
-    font-size: 12px; /* Smaller font size */
+textarea {
+    width: 100%;
+    font-size: 12px;
+    border: 1px solid #bbb; /* Added border for visibility */
+    background: #f9f9f9;
+    color: var(--text-color);
+}
+input {
+    font-size: 16px;
+    border: 1px solid #bbb; /* Added border for visibility */
+    background: #fff;
+    color: var(--text-color);
 }
 
-input { /* Input fields */
-    font-size: 16px; /* Larger font size */
+@media (prefers-color-scheme: dark) {
+    textarea, input {
+        background-color: #232b24;
+        color: var(--text-color);
+        border: 1px solid #444;
+    }
 }
 
-content { /* Content of the blog post */
-    line-height: 1.6; /* Line height */
+content {
+    line-height: 1.6;
 }
 
-table { /* Table */
-    width: 100%; /* Full width */
+table, th, td {
+    color: var(--text-color); /* Ensure table text always matches body */
 }
 
-img { /* Images */
-    max-width: 100%; /* Max width of the image */
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-code { /* Code blocks */
+img {
+    max-width: 100%;
+}
+
+code {
     padding: 2px 5px;
     background-color: var(--code-background-color);
     border-radius: 3px;
@@ -185,75 +192,91 @@ code { /* Code blocks */
     line-height: inherit;
 }
 
-pre code { /* Code blocks */
-    color: var(--code-color); /* Text color */
-    display: block; /* Display block */
-    padding: 20px; /* Add padding */
-    white-space: pre-wrap; /* Preserve line breaks */
-    font-size: 14px; /* Smaller font size */
-    overflow-x: auto; /* Add horizontal scrollbar */
-    margin-top: 20px;  /* Add space on top */
-    margin-bottom: 20px; /* Add space on bottom */
-    background-color: var(--code-background-color); /* Dark blue background */
+pre code {
+    color: var(--code-color);
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--code-background-color);
 }
 
-blockquote { /* Blockquote */
-    border-left: 1px solid var(--blockquote-color); /* Add left border */
-    color: var(--blockquote-color); /* Text color */
-    padding-left: 20px; /* Add left padding */
-    font-style: italic; /* Italic font */
+blockquote {
+    border-left: 1px solid var(--blockquote-color);
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
 }
 
-footer { /* Footer */
-    padding: 25px; /* Add padding */
-    text-align: center; /* Center-align text */
+footer {
+    padding: 25px;
+    text-align: center;
 }
 
-.helptext { /* Help text */
-    color: #777; /* Text color */
-    font-size: small; /* Smaller font size */
+.helptext {
+    color: #777;
+    font-size: small;
 }
 
-.errorlist {  /* Error list */
-    color: #eba613; /* Text color */
-    font-size: small; /* Smaller font size */
+.errorlist {
+    color: #d9822b; /* Darker, more readable than #eba613 */
+    font-size: small;
+    background: #fffbe9;
+    border-left: 4px solid #d9822b;
+    padding: 0.2em 1em;
+    margin-bottom: 0.8em;
 }
 
-ul.blog-posts { /* blog posts */
-    list-style-type: none; /* Remove bullets */
-    padding: unset; /* Remove padding */
+@media (prefers-color-scheme: dark) {
+    .errorlist {
+        color: #ffc371;
+        background: #30210a;
+        border-left: 4px solid #ffc371;
+    }
 }
 
-ul.blog-posts li { /* blog posts */
-    display: flex; /* Use flexbox */
+ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
 }
-
-ul.blog-posts li span { /* blog posts */
-    flex: 0 0 130px; /* Width of the date */
+ul.blog-posts li {
+    display: flex;
 }
-
-ul.blog-posts li a:visited { /* blog posts */
-    color: var(--visited-color); /* Visited link color */
+ul.blog-posts li span {
+    flex: 0 0 130px;
 }
 
 .warning-box {
     border-left: 6px solid #9b2d55;
-    background-color: #fff3cd;
+    background-color: #fff8e1; /* Slightly lighter for contrast */
     padding: 1rem;
     margin: 1rem 0;
-    color: #856404;
+    color: #6d4405; /* Darker for better contrast */
     margin-left: 1rem;
-    font-style: italic;
+    font-style: normal; /* Remove italic for readability */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1.2rem;
 }
-
-.warning-box strong {
+.warning-box strong,
+.warning-box b {
     color: #9b2d55;
     font-weight: bold;
     font-style: normal;
+}
+@media (prefers-color-scheme: dark) {
+    .warning-box {
+        background-color: #23171b;
+        color: #ffb78e;
+    }
+    .warning-box strong,
+    .warning-box b {
+        color: #ff6fa3;
+    }
 }
 
 .footnote-ref {
@@ -262,6 +285,7 @@ ul.blog-posts li a:visited { /* blog posts */
     font-weight: bold;
 }
 
+/* Notice styling, patch for accessibility */
 .notice {
     background-color: var(--notice-base-color);
     color: var(--notice-text-color);
@@ -269,6 +293,26 @@ ul.blog-posts li a:visited { /* blog posts */
     margin: 1rem 0;
     border-radius: var(--border-radius);
     border: 2px solid #1b5e20;
+}
+@media (prefers-color-scheme: dark) {
+    .notice {
+        background-color: #253a2d;
+        color: #fff;
+    }
+}
+
+.notice .notice-title strong,
+.notice .notice-title b {
+    color: var(--notice-title-color);
+}
+.notice.info strong, .notice.info b {
+    color: var(--notice-info-title);
+}
+.notice.warning strong, .notice.warning b {
+    color: var(--notice-warning-title);
+}
+.notice.error strong, .notice.error b {
+    color: var(--notice-error-title);
 }
 
 .notice .notice-title {
@@ -279,23 +323,13 @@ ul.blog-posts li a:visited { /* blog posts */
     margin-bottom: 0.5rem;
     color: var(--notice-title-color);
 }
-
 .notice .notice-title i {
     margin-right: 0.5rem;
     font-size: 1.1em;
 }
-
-.notice.info .notice-title i::before {
-    content: "ℹ️";
-}
-
-.notice.warning .notice-title i::before {
-    content: "⚠️";
-}
-
-.notice.error .notice-title i::before {
-    content: "🚫";
-}
+.notice.info .notice-title i::before { content: "ℹ️"; }
+.notice.warning .notice-title i::before { content: "⚠️"; }
+.notice.error .notice-title i::before { content: "🚫"; }
 
 /* Links section styles */
 .link-entry {
@@ -304,23 +338,19 @@ ul.blog-posts li a:visited { /* blog posts */
     padding-left: 1em;
     position: relative;
 }
-
 .link-entry h3 {
     margin-top: 0;
     margin-bottom: 0.5em;
 }
-
 .link-url {
     font-size: 0.9em;
     color: #666;
     margin-bottom: 0.5em;
 }
-
 .link-url a {
     color: #0066cc;
     text-decoration: none;
 }
-
 .link-url a:hover {
     text-decoration: underline;
 }
@@ -330,19 +360,29 @@ ul.blog-posts li a:visited { /* blog posts */
     color: #444;
     margin: 0.3em 0;
 }
-
 .date {
     font-size: 0.85em;
     color: #666;
     margin: 0.3em 0;
 }
+@media (prefers-color-scheme: dark) {
+    .authors {
+        color: #a8e6ad;
+        font-weight: 500;
+    }
+    .date {
+        color: #bce8c2; /* Lighter for dark mode */
+    }
+    .link-url a {
+        color: #8be9fd;
+        font-weight: 500;
+    }
+}
 
-/* Individual link post styles */
 .type-links article {
     max-width: 42em;
     margin: 0 auto;
 }
-
 .type-links blockquote {
     border-left: 3px solid #0066cc;
     margin: 1.5em 0;
@@ -350,7 +390,6 @@ ul.blog-posts li a:visited { /* blog posts */
     color: #444;
     font-style: italic;
 }
-
 .type-links pre {
     background: #f5f5f5;
     padding: 1em;
@@ -358,70 +397,61 @@ ul.blog-posts li a:visited { /* blog posts */
     overflow-x: auto;
 }
 
-.notice strong, .notice b {
-    color: #1ef47e; /* Darker blue for light theme */
+@media (prefers-color-scheme: dark) {
+    .notice.info strong, .notice.info b {
+        color: var(--notice-info-title);
+    }
+    .notice.warning strong, .notice.warning b {
+        color: var(--notice-warning-title);
+    }
+    .notice.error strong, .notice.error b {
+        color: var(--notice-error-title);
+    }
+    .notice .notice-title strong, .notice .notice-title b {
+        color: var(--notice-title-color);
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-    .notice strong, .notice b {
-        color: #bce8c2; /* Light green for dark theme */
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
     }
-}
-@media (prefers-color-scheme: dark) { /* Dark mode */
-    body { /* Body */
-        background-color: var(--background-color); /* Dark background color */
-        color: var(--text-color);         /* Light text color */
-    } 
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+    }
+    a { color: var(--link-color); }
 
-    h1, /* Heading 1 */
-    h2, /* Heading 2 */
-    h3, /* Heading 3 */
-    h4, /* Heading 4 */
-    h5, /* Heading 5 */
-    h6, /* Heading 6 */
-    strong, /* Bold */
-    b { /* Bold */
-        color: var(--heading-color);  /* Text color */
+    /* Inline code: code NOT inside pre */
+    code:not(pre code) {
+        background-color: rgba(40,44,52,0.68) !important;
+        color: #e0e0e0;
+        border-radius: 4px;
+        border: 1px solid #232c33;
+        padding: 2px 6px;
+        font-family: var(--font-main);
+        font-size: inherit;
+        line-height: inherit;
     }
 
-    a { /* Links */
-        color: var(--link-color); /* Link color */
+    /* Code blocks: code inside pre */
+    pre code {
+        background-color: #23272e !important;
+        color: #e0e0e0;
+        border-radius: 6px;
+        border: 1px solid #232c33;
+        padding: 20px;
     }
     
-    /* Improved visibility for link posts in dark mode */
-    .authors {
-        color: #a8e6ad; /* Brighter green for better visibility */
-        font-weight: 500; /* Slightly bolder */
+blockquote {
+        color: var(--blockquote-color);
     }
-    
-    .link-url a {
-        color: #8be9fd; /* Bright cyan for better visibility */
-        font-weight: 500; /* Slightly bolder */
+    textarea, input {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        border: 1px solid #444;
     }
-
-    code { /* Code blocks */
-        background-color: var(--code-background-color); /* Light orange background */
-        padding: 2px 5px; /* Add padding */
-        border-radius: 5px; /* Rounded edges */
-    }
-
-    pre code { /* Code blocks */
-        color: var(--code-color); /* Text color */
-    }
-
-    blockquote { /* Blockquote */
-        color: var(--blockquote-color); /* Text color */
-    }
-
-    textarea, /* Textarea */
-    input { /* Input fields */
-        background-color: var(--background-color); /* Dark background color */
-        color: var(--text-color); /* Light text color */
-    }
-
-    .helptext {  /* Help text */
-        color: #aaa; /* Text color */
-    }
+    .helptext { color: #aaa; }
 }
 </style>
 {{- with resources.Get "highlight.sass" -}}
