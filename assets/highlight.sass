@@ -1,4 +1,4 @@
-// Syntax highlighting styles
+// Syntax highlighting styles (Light Mode)
 .highlight
   background: #f8f8f8
   color: #333
@@ -193,3 +193,96 @@
 
   .il    // Literal.Number.Integer.Long
     color: #099
+
+// ---- DARK MODE OVERRIDES ----
+
+@media (prefers-color-scheme: dark)
+  .highlight
+    background: #23272e
+    color: #e0e0e0
+
+    .c, .cm, .c1    // Comment
+      color: #5c6370
+      font-style: italic
+
+    .err, .gr, .gt  // Error
+      color: #ff6c6b
+
+    .k, .kc, .kd, .kp, .kr, .ow  // Keywords and operator words
+      color: #c678dd
+      font-weight: bold
+
+    .o   // Operator
+      color: #e0e0e0
+      font-weight: bold
+
+    .cp, .cs   // Preprocessor / special comment
+      color: #61afef
+      font-weight: bold
+
+    .gd        // Deleted
+      color: #fff
+      background-color: #8c4665
+
+    .gd .x     // Deleted specific
+      color: #fff
+      background-color: #b76c9c
+
+    .gi        // Inserted
+      color: #fff
+      background-color: #5b8c53
+
+    .gi .x     // Inserted specific
+      color: #fff
+      background-color: #75b47b
+
+    .ge        // Emphasis
+      font-style: italic
+
+    .gh, .gu   // Heading/Subheading
+      color: #8b949e
+
+    .gs        // Strong
+      font-weight: bold
+
+    .kt        // Type
+      color: #56b6c2
+      font-weight: bold
+
+    .m, .mf, .mh, .mi, .mo, .il   // Numbers
+      color: #d19a66
+
+    .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1   // Strings
+      color: #98c379
+
+    .sr        // Regex
+      color: #56b6c2
+
+    .na, .no, .nv, .vc, .vg, .vi  // Attribute/Constant/Variable
+      color: #d19a66
+
+    .nb        // Builtin
+      color: #e5c07b
+
+    .nc        // Class
+      color: #e5c07b
+      font-weight: bold
+
+    .ni        // Entity
+      color: #61afef
+
+    .ne, .nf   // Exception, Function
+      color: #61afef
+      font-weight: bold
+
+    .nn        // Namespace
+      color: #abb2bf
+
+    .nt        // Tag
+      color: #e06c75
+
+    .w         // Whitespace
+      color: #5c6370
+
+    .bp        // Builtin.Pseudo
+      color: #e5c07b
